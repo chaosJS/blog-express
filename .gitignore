@@ -4,5 +4,4 @@ node_modules
 .vscode-test/
 *.vsix
 .prettierrc
-yarn.lock
-conf
+conf/db.js
