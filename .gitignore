@@ -5,4 +5,4 @@ node_modules
 *.vsix
 .prettierrc
 yarn.lock
-src/conf/db.js
+conf
