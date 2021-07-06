@@ -4,4 +4,4 @@ node_modules
 .vscode-test/
 *.vsix
 .prettierrc
-conf/db.js
+conf/
