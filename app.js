@@ -1,6 +1,7 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
+const fs = require('fs');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const expresSession = require('express-session');
@@ -15,7 +16,20 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-app.use(logger('dev'));
+// dev means method url status res-time res-content-length
+// combined/short/tiny ect each have diiiferent format log
+// app.use(logger('dev', {}));
+const logFileName = path.join(__dirname, 'logs', 'access.log');
+const ws = fs.createWriteStream(logFileName, {
+	// a means append
+	flags: 'a',
+});
+app.use(
+	logger('combined', {
+		stream: ws,
+	})
+);
+
 //add  post data in req.body
 app.use(express.json());
 // add form data in req.body
